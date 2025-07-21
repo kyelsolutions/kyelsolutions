@@ -62,7 +62,18 @@
     .card h3 { color: var(--navy); margin-bottom: .75rem; font-size: 1.2rem; }
 
     /* Why list */
-    .list li { margin-bottom: 1rem; padding-left: 1.8rem; position: relative; }
+    .list {
+      list-style: disc;
+      padding-left: 1.2rem; /* this shifts both bullet and text slightly right */
+      }
+
+    .list li {
+      margin-bottom: 1rem;
+      padding-left: 1rem;      /* slight gap between bullet and text */
+      position: static;     /* no absolute/relative needed anymore */
+   }
+	  
+    <-- .list li { margin-bottom: 1rem; padding-left: 1.8rem; position: relative; } -->
     <-- .list li::before { content: '✔'; position: absolute; left: 0; color: var(--gold); font-weight: 700; } -->
 
     /* Contact */
