@@ -87,7 +87,16 @@
     <-- .list li::before { content: '✔'; position: absolute; left: 0; color: var(--gold); font-weight: 700; } -->
 
     /* Contact */
-    .contact-box { background: var(--gold); color: var(--white); border-radius: 1.25rem; padding: 3rem 2rem; text-align: center; }
+    .contact-box { 
+       /* background: var(--gold); */
+       background: 
+       linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), /* subtle dark overlay */
+       url('hero_banner_bg_kb2.jpg') center/cover no-repeat;  /* your image */
+
+       color: var(--white); 
+       border-radius: 1.25rem; 
+       padding: 3rem 2rem; text-align: center; 
+       }
     .contact-box a { color: var(--white); font-weight: 600; }
 
     /* Footer */
