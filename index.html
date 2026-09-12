@@ -6,180 +6,701 @@
   <title>Kyel Solutions Pte Ltd</title>
   <link rel="icon" type="image/png" href="kyel_favicon.png">
   <link rel="apple-touch-icon" href="kyel_apple_touch.png">
+  <meta name="description" content="Kyel Solutions is a Singapore-based IT provider delivering practical and reliable technology solutions." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
       --navy: #0a2342;
+      --navy-2: #102f55;
       --gold: #cba135;
       --white: #ffffff;
-      --light: #f8f9fb;
-       }
+      --ink: #14263d;
+      --muted: #617086;
+      --line: #dfe6ee;
+      --light: #f5f8fb;
+      --shadow: 0 18px 50px rgba(10,35,66,.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
 
-  .site-logo {
-        width: 250px;
-        height: auto;
-        max-width: 100%;
-        display: block;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-        @media (max-width: 600px) {
-        .site-logo {
-        width: 200px;
-        }
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
 
-}
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,1);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(10,35,66,.07);
+    }
+    .nav-inner {
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .site-logo {
+      width: 220px;
+      height: auto;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: #31445c;
+    }
+    .nav-links a {
+      position: relative;
+      padding: 28px 0;
+      transition: color .2s ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 20px;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform .2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--navy); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { transform: scaleX(1); }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-    body { background: var(--white); color: var(--navy); }
-    a { text-decoration: none; color: inherit; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 999px;
+      padding: 13px 21px;
+      font-weight: 600;
+      font-size: .9rem;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 8px 24px rgba(203,161,53,.22);
+    }
+    .btn-gold:hover { background: #d4ad4f; }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.65);
+      color: var(--white);
+    }
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--navy);
+    }
 
-    /* ===== Navigation ===== */
-    .navbar { position: sticky; top: 0; width: 100%; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; z-index: 999; }
-    .brand { display: flex; align-items: center; gap: .75rem; }
-    
-    .brand span { font-size: 1.25rem; font-weight: 700; }
-    .btn-cta { background: var(--gold); color: var(--white); padding: .8rem 1.8rem; border-radius: 9999px; font-weight: 600; transition: background .3s; }
-    .btn-cta:hover { background: #a98229; }
-
-    /* ===== Hero ===== */
+    /* Hero */
     .hero {
-       position: relative;
-       background:
-         linear-gradient(rgba(10, 20, 40, 0.65), rgba(10, 20, 40, 0.65)),
-         url('hero_banner_bg_kb2.jpg') center/cover no-repeat;
-         color: var(--white);
-         text-align: center;
-         padding: 6rem 2rem 7rem;
-         }
-	.hero h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); margin-bottom: 1rem; }
-    .hero p { font-size: clamp(1.1rem, 2.3vw, 1.35rem); max-width: 780px; margin: 0 auto 2.5rem; line-height: 1.5; }
-    .hero .actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-outline { border: 2px solid var(--white); color: var(--white); padding: .8rem 1.8rem; border-radius: 9999px; font-weight: 600; transition: background .3s; }
-    .btn-outline:hover { background: var(--white); color: var(--navy); }
+      position: relative;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(7,25,47,.98) 0%, rgba(10,35,66,.91) 42%, rgba(10,35,66,.45) 73%, rgba(10,35,66,.22) 100%),
+        url("hero_banner_bg_kb2.jpg") center/cover no-repeat;
+      color: var(--white);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .13;
+      background-image:
+        linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(90deg, black, transparent 82%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 480px; height: 480px;
+      right: -120px; top: 40px;
+      border: 1px solid rgba(203,161,53,.28);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(760px, 100%);
+      padding: 70px 0;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: .72rem;
+      font-weight: 600;
+      color: #e6c96f;
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 34px; height: 2px;
+      background: var(--gold);
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+      max-width: 760px;
+      margin-bottom: 25px;
+    }
+    .hero h1 span { color: #e1ba52; }
+    .hero p {
+      max-width: 640px;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,.82);
+      margin-bottom: 34px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-bottom: 46px;
+    }
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 26px;
+      color: rgba(255,255,255,.88);
+      font-size: .88rem;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .trust-item svg { color: #e0b94e; flex: 0 0 auto; }
 
-    /* ===== Sections ===== */
-    section { padding: 4.5rem 2rem; max-width: 1100px; margin-inline: auto; }
-    section.alt { background: var(--light); }
-    h2.section-title { font-size: 2rem; margin-bottom: 2.5rem; text-align: center; color: var(--gold); position: relative; }
-    h2.section-title::after { content: ''; position: absolute; width: 70px; height: 3px; background: var(--gold); bottom: -10px; left: 50%; transform: translateX(-50%); }
+    /* Sections */
+    section { scroll-margin-top: 90px; }
+    #top { scroll-margin-top: 80px; }
+    .section { padding: 105px 0; }
+    .section-light { background: var(--light); }
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 52px;
+    }
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: #8090a5;
+      font-size: .72rem;
+      font-weight: 700;
+      margin-bottom: 13px;
+    }
+    .section-kicker::before {
+      content: "";
+      display: block;
+      width: 35px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 13px;
+    }
+    h2 {
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+    .section-heading > p {
+      color: var(--muted);
+      max-width: 470px;
+      justify-self: end;
+    }
 
-    /* Services grid */
-    .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
-    .card { background: var(--white); border-radius: 1.25rem; padding: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,.05); transition: transform .25s ease; }
-    .card:hover { transform: translateY(-6px); }
-    .card h3 { color: var(--navy); margin-bottom: .75rem; font-size: 1.2rem; }
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-lead {
+      font-size: 1.22rem;
+      line-height: 1.65;
+      color: #2b4059;
+    }
+    .about-copy {
+      color: var(--muted);
+      margin-top: 22px;
+    }
+    .experience-mark {
+      min-height: 310px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(10,35,66,.97), rgba(16,47,85,.91)),
+        url("hero_banner_bg_kb2.jpg") center/cover;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+    .experience-mark::before {
+      content: "20+";
+      position: absolute;
+      top: 26px; right: 30px;
+      font-size: clamp(5rem, 12vw, 9rem);
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -.08em;
+      color: rgba(255,255,255,.2);
+    }
+    .experience-mark p {
+      color: rgba(255,255,255,.8);
+      max-width: 300px;
+      position: relative;
+      z-index: 1;
+    }
+    .experience-mark strong {
+      display: block;
+      color: var(--white);
+      font-size: 1.25rem;
+      margin-bottom: 7px;
+    }
 
-    /* Why list */
-    .list {
-      list-style: disc;
-      padding-left: 1.2rem; /* this shifts both bullet and text slightly right */
-      }
+    /* Services */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .service-card {
+      position: relative;
+      min-height: 245px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.9);
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      overflow: hidden;
+    }
+    .service-card::after {
+      position: absolute;
+      right: 25px; bottom: 22px;
+      color: var(--gold);
+      font-size: 1.3rem;
+      transition: transform .25s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(203,161,53,.55);
+      box-shadow: var(--shadow);
+    }
+    .service-card:hover::after { transform: translate(3px,-3px); }
+    .icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: grid; place-items: center;
+      background: #edf3f9;
+      color: var(--navy);
+      margin-bottom: 25px;
+    }
+    .service-card h3 {
+      color: var(--navy);
+      font-size: 1.08rem;
+      margin-bottom: 10px;
+      letter-spacing: -.015em;
+    }
+    .service-card p {
+      color: var(--muted);
+      font-size: .92rem;
+      max-width: 310px;
+    }
 
-    .list li {
-      margin-bottom: 1rem;
-      padding-left: 1rem;      /* slight gap between bullet and text */
-      position: static;     /* no absolute/relative needed anymore */
-   }
-	  
-    <-- .list li { margin-bottom: 1rem; padding-left: 1.8rem; position: relative; } -->
-    <-- .list li::before { content: '✔'; position: absolute; left: 0; color: var(--gold); font-weight: 700; } -->
+    /* Why */
+    .why-wrap {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 90px;
+      align-items: start;
+    }
+    .why-intro p {
+      color: var(--muted);
+      margin-top: 22px;
+      max-width: 400px;
+    }
+    .why-list { border-top: 1px solid var(--line); }
+    .why-item {
+      padding: 25px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    }
+    .why-number {
+      color: #ad8526;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      padding-top: 4px;
+    }
+    .why-item h3 {
+      color: var(--navy);
+      font-size: 1.05rem;
+      margin-bottom: 5px;
+    }
+    .why-item p {
+      color: var(--muted);
+      font-size: .92rem;
+    }
 
-    /* Contact */
-    .contact-box { 
-       /* background: var(--gold); */
-       background: 
-       linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), /* subtle dark overlay */
-       url('hero_banner_bg_kb2.jpg') center/cover no-repeat;  /* your image */
-
-       color: var(--white); 
-       border-radius: 1.25rem; 
-       padding: 3rem 2rem; text-align: center; 
-       }
-    .contact-box a { color: var(--white); font-weight: 600; }
+    /* Contact CTA */
+    .cta {
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: "";
+      position: absolute;
+      width: 360px; height: 360px;
+      left: -210px; bottom: -220px;
+      border: 1px solid rgba(203,161,53,.6);
+      transform: rotate(45deg);
+    }
+    .cta-inner {
+      min-height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta .section-kicker { color: rgba(255,255,255,.6); }
+    .cta h2 { color: var(--white); max-width: 680px; }
+    .cta h2 span { color: #e1ba52; }
+    .cta-copy {
+      color: rgba(255,255,255,.68);
+      max-width: 480px;
+      margin-top: 12px;
+    }
+    .contact-details {
+      margin-top: 24px;
+      color: rgba(255,255,255,.75);
+      font-size: .92rem;
+    }
+    .contact-details a { color: #f0d278; font-weight: 600; }
 
     /* Footer */
-    footer { background: var(--navy); color: var(--white); text-align: center; padding: 2.5rem 1rem; }
-    footer a { color: var(--gold); }
+    footer {
+      background: #071a31;
+      color: rgba(255,255,255,.65);
+      padding: 34px 0;
+      font-size: .8rem;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .footer-logo {
+      width: 145px;
+      filter: brightness(0) invert(1);
+      opacity: .92;
+    }
+    .footer-right {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px 28px;
+      text-align: right;
+    }
+    .footer-right strong { color: var(--gold); }
+    .footer-right a:hover { color: var(--white); }
 
-    @media (max-width: 480px) { .navbar { padding: 1rem; } }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-inner { min-height: 72px; }
+      .site-logo { width: 150px; }
+      .hero { min-height: 520px; background-position: 65% center; }
+      .hero h1 { font-size: clamp(2.7rem, 9vw, 4.5rem); }
+      .section { padding: 78px 0; }
+      .section-heading, .about-grid, .why-wrap {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+      .section-heading > p { justify-self: start; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-inner {
+        padding: 58px 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-right { justify-content: flex-start; text-align: left; }
+    }
+
+    @media (max-width: 600px) {
+      .container { width: min(var(--max), calc(100% - 28px)); }
+      .btn { padding: 12px 17px; }
+      .nav-inner .btn { font-size: .82rem; padding: 10px 15px; }
+      .hero {
+        min-height: 560px;
+        background:
+          linear-gradient(180deg, rgba(7,25,47,.96) 0%, rgba(10,35,66,.88) 55%, rgba(10,35,66,.62) 100%),
+          url("hero_banner_bg_kb2.jpg") 62% center/cover no-repeat;
+      }
+      .hero-content { padding: 50px 0; }
+      .hero h1 { letter-spacing: -.045em; }
+      .hero p { font-size: 1rem; }
+      .trust-row { gap: 15px 22px; }
+      .section { padding: 65px 0; }
+      h2 { font-size: 2.15rem; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: 210px; }
+      .experience-mark { min-height: 270px; }
+      .why-item { grid-template-columns: 42px 1fr; gap: 10px; }
+      .footer-logo { width: 125px; }
+    }
   </style>
 </head>
+
 <body>
-  <!-- ===== Navigation ===== -->
   <nav class="navbar">
-    <div class="brand">
-      <img src="kyel_solutions_logo.jpg" alt="Kyel Solutions" class="site-logo" />
-      <!--  <span>Kyel Solutions</span> -->
+    <div class="container nav-inner">
+      <a href="#top" aria-label="Kyel Solutions home">
+        <img src="kyel_solutions_logo.jpg" alt="Kyel Solutions Pte Ltd" class="site-logo" />
+      </a>
+
+      <div class="nav-links">
+        <a href="#top" class="active">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Our Solutions</a>
+        <a href="#why">Why Kyel</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a href="#contact" class="btn btn-gold">Get in Touch</a>
     </div>
-    <a href="#contact" class="btn-cta">Contact Us</a>
   </nav>
 
-  <!-- ===== Hero ===== -->
   <header class="hero" id="top">
-    <h1>Delivering Trusted IT Solutions</h1>
-    <p>From devices to solutions, delivered with speed, integrity, and reliability.</p>
-    <div class="actions">
-        <a href="#about" class="btn-outline">Learn More</a>
-	<a href="#services" class="btn-cta">Our Services</a>
+    <div class="container">
+      <div class="hero-content">
+       
+        <h1>IT that works.<br><span>Business that moves.</span></h1>
+        <p>
+          From devices to solutions, delivered with speed, integrity, and reliability.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#services" class="btn btn-gold">Explore Our Solutions</a>
+          <a href="#about" class="btn btn-outline">About Kyel</a>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 3l8 3v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-3z"/><path d="M9 12l2 2 4-4"/>
+            </svg>
+            Trusted
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/>
+            </svg>
+            Efficient
+          </div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M8 12l-3 3 4 4 3-3"/><path d="M16 12l3-3-4-4-3 3"/><path d="M9 15l6-6"/>
+            </svg>
+            Reliable
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- ===== About ===== -->
-  <section id="about">
-  <br>
-  <br>
-  <br>	  
-    <h2 class="section-title">Who We Are</h2>
-    <p style="max-width:800px;margin:0 auto;font-size:1.05rem;text-align:center;">Kyel Solutions is a Singapore-based IT provider delivering practical and reliable technology solutions. Founded by an industry professional with over 20 years of experience in system integration and enterprise IT, the team delivers seasoned judgment, proven execution, and dependable outcomes, helping businesses make informed IT decisions that strengthen continuity and drive sustainable growth.</p>
-  </section>
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div>
+        <div class="section-kicker">Who We Are</div>
+        <h2>Practical IT, backed by experience.</h2>
+        
+        <p class="about-copy">
+          Founded by an industry professional with over 20 years of experience in system integration and enterprise IT,
+          the team delivers seasoned judgment, proven execution, and dependable outcomes, helping businesses make
+          informed IT decisions that strengthen continuity and drive sustainable growth.
+        </p>
+      </div>
 
-  <!-- ===== Services ===== -->
-  <section id="services" class="alt">
-  <br>
-  <br>
-  <br>	  
-    <h2 class="section-title">What We Offer</h2>
-    <div class="grid">
-      <div class="card"><h3>Enterprise IT Solutions</h3><p>Compute, storage, networking and infrastructure solutions powering your operations.</p></div>
-	  <div class="card"><h3>End‑User Devices & Accessories</h3><p>Business laptops, desktops, and essential peripherals for seamless productivity.</p></div>
-      <div class="card"><h3>Pre‑Owned IT Equipment</h3><p>Quality-tested refurbished devices offering the best of both quality and value.</p></div>
-      <div class="card"><h3>Professional Services</h3><p>Deployment, migration & implementation services to accelerate adoption.</p></div>
-      <div class="card"><h3>Helpdesk-as-a-Service</h3><p>Managed helpdesk and IT support, enabling focus on core business priorities.</p></div>
-      <div class="card"><h3>IT Assessment for SMEs</h3><p>Lightweight evaluation tailored for small businesses to uncover risks and gaps early.</p></div>
+      <div class="experience-mark">
+        <p>
+          <strong>Experience that matters.</strong>
+          Over 20 years of hands-on industry experience, bringing practical insight, sound judgment, and proven expertise to every IT engagement.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Why Us ===== -->
-  <section id="why">
-    <h2 class="section-title">Why Work With Us</h2>
-    <ul class="list" style="max-width:860px;margin:0 auto;font-size:1.05rem;">
-      <li><b>B2B Expertise:</b> We understand your needs from enquiry to deployment.</li>
-      <li><b>Business-First Partnership:</b> We take care of your IT so you can concentrate on your business.</li>
-	  <li><b>Transparent Pricing:</b> Clear, fair, no unneccessary upsells.</li>
-      <li><b>Reliable Engagement:</b> Builds trust and avoids surprises.</li>
-	  <li><b>Trusted Partner:</b> We prioritize lasting relationships over one-off deals.</li>
-    </ul>
+  <section class="section section-light" id="services">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">What We Offer</div>
+          <h2>Technology that fits<br>your business.</h2>
+        </div>
+        <p>
+          Practical technology choices, from enterprise infrastructure and end-user devices to deployment and support.
+        </p>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-server-plus"><path d="M12.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2"/><path d="M16 12h6"/><path d="M19 9v6"/><path d="M22 18v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h8.5"/><path d="M6 18h.01"/><path d="M6 6h.01"/></svg>
+          </div>
+          <h3>Enterprise IT Solutions</h3>
+          <p>Compute, storage, networking and infrastructure solutions powering your operations.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="icon">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <rect x="3" y="5" width="18" height="11" rx="1.5"/><path d="M8 20h8M10 16v4M14 16v4"/>
+            </svg>
+          </div>
+          <h3>End-User Devices &amp; Accessories</h3>
+          <p>Business laptops, desktops, and essential peripherals for seamless productivity.</p>
+        </article>
+
+<article class="service-card">
+          <div class="icon">
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cctv"><path d="M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97"/><path d="M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z"/><path d="M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15"/><path d="M2 21v-4"/><path d="M7 9h.01"/></svg>
+          </div>
+          <h3>Surveillance Solutions</h3>
+          <p>CCTV and intelligent surveillance solutions for greater visibility, security and operational awareness.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor-check"><path d="m9 10 2 2 4-4"/><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
+          </div>
+          <h3>Pre-Owned IT Equipment</h3>
+          <p>Quality-tested refurbished devices offering the best of both quality and value.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor-cog"><path d="M12 17v4"/><path d="m14.305 7.53.923-.382"/><path d="m15.228 4.852-.923-.383"/><path d="m16.852 3.228-.383-.924"/><path d="m16.852 8.772-.383.923"/><path d="m19.148 3.228.383-.924"/><path d="m19.53 9.696-.382-.924"/><path d="m20.772 4.852.924-.383"/><path d="m20.772 7.148.924.383"/><path d="M22 13v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"/><path d="M8 21h8"/><circle cx="18" cy="6" r="3"/></svg>
+          </div>
+          <h3>Professional Services</h3>
+          <p>Deployment, migration &amp; implementation services to accelerate adoption.</p>
+        </article>
+
+
+
+        <article class="service-card">
+          <div class="icon">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <path d="M4 14v-3a8 8 0 0 1 16 0v3"/><path d="M4 14h3v4H5a1 1 0 0 1-1-1v-3zM17 14h3v3a1 1 0 0 1-1 1h-2v-4z"/><path d="M17 19c-1 1-3 2-5 2"/>
+            </svg>
+          </div>
+          <h3>Helpdesk-as-a-Service</h3>
+          <p>Managed helpdesk and IT support, enabling focus on core business priorities.</p>
+        </article>
+
+        
+      </div>
+    </div>
   </section>
 
-  <!-- ===== Contact ===== -->
-  <section id="contact" class="alt">
-    <div class="contact-box">
-      <h2 style="margin-bottom:1rem;">Get In Touch</h2>
-      <p style="margin-bottom:1.5rem;"> E-Mail: <a href="mailto:contact@kyelsolutions.com.sg">contact@kyelsolutions.com.sg</a> <br> <br> Based in Singapore <br> <br></p>
-      <a href="https://www.linkedin.com/company/kyel-solutions/" target="_blank" rel="noopener" class="btn-outline" style="border-color:var(--white);">Visit LinkedIn</a>
-	<!--<br>📞 +65 XXXX XXXX<br> -->    
-	</div>
+  <section class="section" id="why">
+    <div class="container why-wrap">
+      <div class="why-intro">
+        <div class="section-kicker">Why Work With Us</div>
+        <h2>A partner who understands the business behind the IT.</h2>
+        <p>
+          We focus on clear recommendations, dependable engagement and lasting relationships.
+        </p>
+      </div>
+
+      <div class="why-list">
+        <div class="why-item"><div><h3>B2B Expertise</h3><p>We understand your needs from enquiry to deployment.</p></div></div>
+        <div class="why-item"><div><h3>Business-First Partnership</h3><p>We take care of your IT so you can concentrate on your business.</p></div></div>
+        <div class="why-item"><div><h3>Transparent Pricing</h3><p>Clear, fair, no unnecessary upsells.</p></div></div>
+        <div class="why-item"><div><h3>Reliable Engagement</h3><p>Builds trust and avoids surprises.</p></div></div>
+        <div class="why-item"><div><h3>Trusted Partner</h3><p>We prioritize lasting relationships over one-off deals.</p></div></div>
+      </div>
+    </div>
   </section>
 
-  <!-- ===== Footer ===== -->
+  <section class="cta" id="contact">
+    <div class="container cta-inner">
+      <div>
+        <div class="section-kicker">Get In Touch</div>
+        <h2>Have an IT requirement? <br><span>Talk to us.</span></h2>
+        <p class="cta-copy">
+          Get in touch with us for a friendly discussion about your IT requirements.
+        </p>
+        <div class="contact-details">
+          E-mail: <a href="mailto:contact@kyelsolutions.com.sg">contact@kyelsolutions.com.sg</a><br><br />
+          Based in Singapore
+        </div>
+      </div>
+
+      <div>
+        <a class="btn btn-gold" href="mailto:contact@kyelsolutions.com.sg"><span></span>Contact Us<span></span></a>
+        <br /><br />
+        <a class="btn btn-outline" href="https://www.linkedin.com/company/kyel-solutions/" target="_blank" rel="noopener">Visit LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p><strong>UEN:</strong> 202528357W</p>
-    <p>Trusted • Efficient • Reliable</p>
-    <p>&copy; <span id="year"></span> Kyel Solutions Pte Ltd</p>
+    <div class="container footer-inner">
+      
+      <div class="footer-right">
+        <span><strong>TRUSTED · EFFICIENT · RELIABLE</strong></span>
+        <span>UEN: 202528357W</span>
+        <span>© <span id="year"></span> Kyel Solutions Pte Ltd</span>
+      </div>
+    </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
